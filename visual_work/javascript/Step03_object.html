@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step03_object.html</title>
+</head>
+
+<body>
+    <button onclick="change()">수정하기</button>
+    <script>
+        let mem1 = { num: 1, name: "김구라", addr: "노량진" };
+        //mem1 변수 안에 들어있는 object type data를 a라는 변수에 대입
+        let a = mem1;
+        let b = mem1.num; //b는 number type
+        let c = mem1.name; //c는 string type
+        let d = mem1.addr; //d는 string type
+
+        function change() {
+            //위의 버튼을 눌렀을 때 아래의 두줄이 실행되도록 해보세요
+            mem1.num = 999;
+            mem1.name = "이정호";
+            //만약 존재하지 않는 key값이면 추가 된다.
+            mem1.isMan=true;
+        }
+
+        //특정 key값 삭제하기
+        delete mem1.addr;
+
+        //빈 object 만들고 
+        let mem2={};
+        //나중에 key 값을 하나씩 추가 할 수 있음
+        mem2.num = 2;
+        mem2.name = "해골";
+        mem2.addr = "행신동";
+        
+
+    </script>
+</body>
+
+</html>

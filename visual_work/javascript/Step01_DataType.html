@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step01_DataType.html</title>
+</head>
+<body>
+    <h1>javascript 데이터 type</h1>
+    <button onclick="move()">hello.html로 이동</button>
+    <button onclick="makeImage()">이미지 추가하기</button>
+    <button onclick="add()" id="addBtn">0</button>
+    <script>
+        //웹브라우저에서 위의 버튼을 누르면 hello.html 페이지를 열어줘~
+
+        function move() {
+            location.href="hello.html";
+        }
+
+        function makeImage() {
+            let image = document.createElement("img");
+            image.setAttribute("src", "images/kim1.png");
+            document.querySelector("body").append(image);
+        }
+
+        let count = 0;
+
+        function add(){
+            count = count+1;
+            document.querySelector("#addBtn").innerText=count;
+        }
+
+    </script>
+</body>
+</html>
