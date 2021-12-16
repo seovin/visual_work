@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="친구이름입력..." id="inputName">
+    <button onclick="save()">배열에 저장하기</button>
+    <button onclick="show()">출력하기</button>
+    <div id="friendList">
+
+    </div>
+    <script>
+        let friends = [];
+
+
+        function save(){
+            //1. 입력한 이름 읽어오기
+            let name=document.querySelector("#inputName").value;
+            //2. 배열에 저장하기
+            friends.push(name);
+            //3. 알림 띄우기
+            alert("저장 했습니다!");
+        }
+
+        let show=function(){
+            for (let i = 0; i < friends.length; i++) {
+                let tmp = friends[i];
+                let p1 = document.createElement("p");
+                p1.innerText = tmp;
+                document.querySelector("#friendList").append(p1);
+            }
+        };
+
+        /*
+            1. input 요소에 이름을 입력하면 입력한 이름을 friends 배열에 저장하고 
+            "저장 했습니다!" 라는 알림을 띄우게 프로그래밍 해 보세요.
+
+            2. 출력하기 버튼을 누르면 배열에 저장된 이름을 하나씩 p 요소의 innerText 에
+               출력하고 id 가 friendList 인 div 에 추가 하도록 프로그래밍 해 보세요.
+        */
+
+    </script>
+</body>
+
+</html>

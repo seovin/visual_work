@@ -9,15 +9,20 @@
 <body>
     <h1>Document Object Model</h1>
     <p>문서 객체 모델에 대해서 알아보자</p>
-    <input type="text">
+    <input type="text" >
+    <input type="text" id="one">
     <button>버튼</button>
     <div>div입니다</div>
     <img src="images/kim1.png" alt="김구라 이미지 입니다">
+    <img src="C:\acorn202112\visual_work\javascript\images/kim1.png" alt="김구라 이미지 입니다">
+    <img src="https://ucarecdn.com/05f649bf-b70b-4cf8-90f7-2588ce404a08/" alt="김구라 이미지 입니다">
 
     <script>
-        let a = document.querySelector("hi").innerText;
+        //h1요소의 innertext를 읽어와서 a라는 변수에 담기
+        let a = document.querySelector("h1").innerText;
         //input 요소의 value로 안녕하세요 문자열 넣어주기
         document.querySelector("input").value = "안녕하세요";
+        document.querySelector("#one").value = "good morning";
     </script>
 </body>
 </html>
