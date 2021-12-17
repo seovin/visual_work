@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_if3.html</title>
+</head>
+<body>
+    <input type="text" id="point" placeholder="점수 입력...">
+    <button id="checkBtn">체크</button>
+    <p id="info"></p>
+    <script>
+        /*
+            input 요소에 점수를 입력하고 체크 버튼을 눌르면
+            입력한 점수를 읽어와서 점수 구간을 확인해서 
+            학점을 출력하고자 한다.
+
+            100~90 => A
+            89~80 => B
+            79~70 => C
+            69~60 => D
+            59~0 => F
+        */
+
+        document.querySelector("#checkBtn").addEventListener("click", function(){
+            //입력한 점수를 읽어온다.
+            let jumsu=document.querySelector("#point").value;
+
+            if(jumsu >= 90){
+                document.querySelector("#info").innerText="A 입니다";
+            }else if(jumsu >= 80){
+                document.querySelector("#info").innerText="B 입니다.";
+            }else if(jumsu >= 70){
+                document.querySelector("#info").innerText="C 입니다.";
+            }else if(jumsu >= 60){
+                document.querySelector("#info").innerText="D 입니다.";
+            }else{
+                document.querySelector("#info").innerText="F 입니다.";
+            }
+
+        });
+    </script>
+</body>
+</html>
