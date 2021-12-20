@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test.html</title>
 </head>
+
 <body>
+    <p class="my-class">p1</p>
+    <p class="my-class">p2</p>
+    <p>p3</p>
+    <p class="my-class">p4</p>
+    <p>p5</p>
+    <button id="yourBtn">버튼</button>
+
     <script>
 
-        let f= function () {
-            console.log("하나");
-            console.log("두울");
-            console.log("세엣");
-        }
+        document.querySelector("#yourBtn").addEventListener("mouseover", function(){
+            let all=document.querySelectorAll('.my-class');
+            all.forEach(function (item) {
+                item.innerText="마우스를 올렸네요?";
+            });
+            
+        });
     </script>
 </body>
+
 </html>

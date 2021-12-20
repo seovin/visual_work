@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step11_JSON.html</title>
+</head>
+<body>
+    <script>
+        let json = '{"num":1, "name":"김구라","addr":"노량진"}';
+        let mem= JSON.parse(json);
+        //object 이기 때문에 값을 쉽게 참조할 수 있다.
+        let a = mem.num; //1
+        let b = mem.name; //"김구라"
+        let c = mem.addr; //"노량진"
+
+        /*
+         -JSON 문자열 작성 규칙
+         { "key" : value , "key2": value, ....}         
+         {value, value2, value3, ...}
+
+         -value가 될 수 있는 형식
+
+         숫자, 문자, 논리, objecr, array, 빈값(null)
+        */
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step09_example5.html</title>
+    <style>
+        /* 아이디가 msgList 인 요소의 자손 요소중에서 li에 마우스가 hover 되었을때 적용할 css */
+        #msgList li:hover{
+            background-color: yellow;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>ul 요소도 같이 사용해 보기</h1>
+    <input type="text" id="inputMsg">
+    <button id="addBtn">추가</button>
+    <ul id="msgList">
+        <li>하나</li>
+        <li>두울</li>
+        <li>세엣</li>
+    </ul>
+    <script>
+
+        document.querySelectorAll("#msgList li").forEach(function(item){
+            // item 은 li 요소의 참조값이다.
+            item.addEventListener("click", function(){
+                //this 는 "click" 이벤트가 일어난 바로 그 요소의 참조값을 가리킨다.
+                console.log(this);
+                let isDelete=confirm("삭제를 원하면 확인을 누르세요");
+                //만일 isDelete 가 true 라면 (만일 확인 버튼을 눌렀다면 )
+                if(isDelete){
+                    //"click" 이벤트가 일어난 바로 그요소를 제거한다. 
+                    this.remove();
+                }
+            });
+        });
+
+        //input 요소에 keyup 이벤트가 일어 났을때 실행할 함수 등록
+        document.querySelector("#inputMsg").addEventListener("keyup", function(e){
+            console.log(e);
+            //만일 엔터키를 눌렀다면
+            if(e.keyCode == 13){
+                send();
+            }
+        });
+
+        document.querySelector("#addBtn").addEventListener("click", function(){
+            send();
+        });
+
+        function send(){
+            //1. 입력한 문자열 읽어오기
+            let msg=document.querySelector("#inputMsg").value;
+            //2. li 요소 만들기
+            let li=document.createElement("li");
+            //3. li 요소에 innerText 출력하기
+            li.innerText=msg;
+            //4. ul 에 li 요소를 append 하기
+            document.querySelector("#msgList").append(li);
+            //5. input 요소에 빈문자열을 넣어서 입력한 내용 지우기
+            document.querySelector("#inputMsg").value="";
+            //6. click 이벤트 리스너 등록
+            li.addEventListener("click", function(){
+                //this 는 "click" 이벤트가 일어난 바로 그 요소의 참조값을 가리킨다.
+                console.log(this);
+                let isDelete=confirm("삭제를 원하면 확인을 누르세요");
+                //만일 isDelete 가 true 라면 (만일 확인 버튼을 눌렀다면 )
+                if(isDelete){
+                    //"click" 이벤트가 일어난 바로 그요소를 제거한다. 
+                    this.remove();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
