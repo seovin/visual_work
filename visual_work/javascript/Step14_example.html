@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step14_example.html</title>
+</head>
+<body>
+    <button id="myBtn">눌러보셈</button>
+    <button id="myBtn2">눌러보셈2</button>
+    <button id="myBtn3">눌러보셈3</button>
+    <p id="info"></p>
+    <script>
+        /*
+            1. 눌러보셈 버튼을 누르면 p 요소에  0 또는 1 또는 2 라는 숫자가 무작위로 
+               출력되도록 해 보세요. 
+
+            2. 위의 작업이 성공했다면 p 요소에 숫자를 출력하지 말고
+               가위 또는 바위 또는 보 라는 문자열이 무작위로 출력되도록 수정해 보세요.
+        */
+        document.querySelector("#myBtn").addEventListener("click", function(){
+            //0 or 1 or 2 라는 정수를 무작위로 얻어내기
+            let ranNum=Math.floor(Math.random()*3);
+            //얻어낸 수를 p요소의 innerText 로 출력하기 
+            document.querySelector("#info").innerText=ranNum;
+        });
+        
+        document.querySelector("#myBtn2").addEventListener("click", function(){
+            //0 or 1 or 2 라는 정수를 무작위로 얻어내기
+            let ranNum=Math.floor(Math.random()*3);
+            if(ranNum==0){
+                document.querySelector("#info").innerText="가위";
+            }else if(ranNum==1){
+                document.querySelector("#info").innerText="바위";
+            }else{
+                document.querySelector("#info").innerText="보";
+            }
+        });
+
+        let data=["가위","바위","보"];
+        document.querySelector("#myBtn2").addEventListener("click", function(){
+            //0 or 1 or 2 라는 정수를 무작위로 얻어내기
+            let ranNum=Math.floor(Math.random()*3);
+            document.querySelector("#info").innerText=data[ranNum];
+            
+        });
+    </script>
+</body>
+</html>

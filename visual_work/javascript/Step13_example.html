@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step13_example.html</title>
+</head>
+<body>
+    <button id="startBtn">Start</button>
+    <p id="info">0</p>
+    <script>
+        /*
+            Start 버튼을 누르면 p 요소에 출력된 숫자가 1초마다 1씩 증가하도록 프로그래밍 해 보세요.
+        */
+        
+        document.querySelector("#startBtn").addEventListener("click", function(){
+            setInterval(function(){
+                //1초마다 하고 싶은 작업을 여기 안에서 하면 된다.
+                //p 요소에 출력된 문자열을 읽어와서 숫자로 바꾼다. 
+                let count=Number(document.querySelector("#info").innerText);
+                //숫자에 1 을 더해서 p 요소의 innerText 로 넣어준다. 
+                document.querySelector("#info").innerText=count+1;
+            }, 1000);
+        });
+
+    </script>
+</body>
+</html>

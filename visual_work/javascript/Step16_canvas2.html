@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step16_canvas2.html</title>
+    <style>
+        canvas {
+            border: 1px dotted gray;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>canvas 요소 사용해 보기</h1>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+    <script>
+        //canvas 요소의 참조값
+        let canvas = document.querySelector("#myCanvas");
+        //canvas 에 그림을 그릴수 있는 도구의 참조값 얻어오기 
+        let context = canvas.getContext("2d");
+
+        //canvas 에 그릴 이미지 로딩하기
+        let snipeImg = new Image();
+        snipeImg.src = "images/snipe.png";
+
+        let snipeX = 0;
+        let snipeY = 0;
+
+        let fire = new Audio("sounds/fire.wav");
+        let holeImg = new Image();
+        holeImg.src  ="images/hole.png";
+        let printhole=[];
+
+        //초당 100번 호출되는 함수를 만들어 놓고 
+        setInterval(function () {
+            //사각형 영역을 지우기  .clearRect(x, y, width, height)
+            context.clearRect(0, 0, 500, 500);
+            //함수 안에서 canvas 에 렌더링하는 작업을 한다. 
+            context.drawImage(snipeImg, snipeX - 50, snipeY - 50, 100, 100);
+            printhole.forEach(function(item){
+                context.drawImage(holeImg,item.x-10, item.y-10, 20, 20);
+        });
+        }, 10);
+
+        canvas.addEventListener("mousemove", function (e) {
+            //마우스의 좌표를 스나이프의 좌표에 반영한다. 
+            snipeX = e.offsetX;
+            snipeY = e.offsetY;
+        });
+
+        // canvas 에 "mousedown" 이벤트가 일어 났을때 총소리를 재생해 보세요.
+        
+        canvas.addEventListener("mousedown", function (e) {
+            fire.currentTime=0;
+            fire.play();
+            let xyHole = { x: e.offsetX, y: e.offsetY };
+            printhole.push(xyHole);     
+        });
+
+      
+
+       
+       
+    </script>
+</body>
+
+</html>
