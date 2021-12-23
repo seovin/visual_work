@@ -8,6 +8,7 @@
     <style>
         canvas{
             border: 1px dotted gray;
+            cursor: crosshair;
         }
     </style>
 </head>
@@ -77,6 +78,16 @@
         //총의 y축 반동값을 저장할 변수
         let waveY=0;
         
+        //blood 이미지 6개 미리 로딩해서 배열에 저장해 놓기 
+        let bloodImgs=[];
+        for(let i=0; i<6; i++){
+            let tmp=new Image();
+            tmp.src="images/blood"+i+".png";
+            bloodImgs.push(tmp);
+        }
+        //blood 객체를 저장할 배열 미리 만들기
+        let bloods=[];
+
 
         //초당 100번 호출되는 함수를 만들어 놓고 
         setInterval(function(){
@@ -104,8 +115,15 @@
                 //다 그렸으면 context 를 저장된 상태로 다시 되돌린다.
                 context.restore();
             }
-
+            //토끼 그리기
             context.drawImage(rabbitImgs[rabbitIndex], rabbitX-50, rabbitY-50, 100, 100);
+            //토끼를 그린다음 반복문 돌면서 핏자국을 그린다.
+            for(let i=0; i<bloods.length; i++){
+                //i 번째 핏자국 객체를 불러온다.
+                let tmp=bloods[i];
+                context.drawImage(bloodImgs[tmp.type], tmp.x-100, tmp.y-100, 200, 200);
+            } 
+
             //함수 안에서 canvas 에 렌더링하는 작업을 한다. 
             context.drawImage(snipeImg, snipeX-50, snipeY-50-waveY, 100, 100);
             //총알의 남은 갯수를 출력하기 
@@ -164,6 +182,25 @@
                 waveY=0;
             }
 
+            //애니메이션 진행 속도롤 늦추기 위해 
+            if(count%10 == 0){
+                //핏자국이 변하도록 처리
+                for(let i=0; i<bloods.length; i++){
+                    let tmp=bloods[i];
+                    tmp.type++;
+                    if(tmp.type==6){ //만일 존재 하지 않는 인덱스라면 
+                        tmp.isRemove=true; //배열에서 제거 하도록 표시한다. 
+                    }
+                }
+            }
+            //배열에서 제거할 핏자국은 바로 제거하기 (배열은 역순으로 돌아야 함)
+            for(let i=bloods.length-1; i>=0; i--){
+                let tmp=bloods[i];
+                if(tmp.isRemove){
+                    bloods.splice(i, 1);
+                }
+            }
+
         }, 10);
 
         canvas.addEventListener("mousemove", function(e){
@@ -203,6 +240,22 @@
                 score += 1;
                 //출력하기
                 document.querySelector("#score").innerText=score;
+                /*
+                    blood 객체를 만들어야 한다
+                    blood 객체는 x 좌표, y 좌표, type , isRemove 라는 4개의 정보로 구성되어야 한다.
+                    type 은 0,1,2,3,4,5  중에 하나의 숫자 , 초기값은 0 으로 부여할 예정
+                    isRemove 은 배열에서 제거할지에 대한 여부, 초기값은 false 로 부여할 예정
+                */
+                //blood 객체를 만들어서 
+                let bloodObj={};
+                //필요한 정보를 담고 
+                bloodObj.x=e.offsetX; //마우스 다운이벤트가 일어난곳에 핏자국을 만들어야 함으로 
+                bloodObj.y=e.offsetY; //마우스 다운이벤트가 일어난곳에 핏자국을 만들어야 함으로 
+                bloodObj.type=0;
+                bloodObj.isRemove=false;
+                //배열에 저장하기 
+                bloods.push(bloodObj);
+
                 //토끼 파편 만들기 
                 for(let i=0; i<5; i++){
                     let tmp={};
